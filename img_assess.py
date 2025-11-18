@@ -62,3 +62,4 @@ def quality(path, dest):
     else:
         print("No images found.")
 
+    return qualified, total

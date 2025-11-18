@@ -21,7 +21,6 @@ def split_one_frame_per_second(video_path, dest_folder):
 
     count = 0
     while True:
-        # Jump to the timestamp (in milliseconds)
         vidcap.set(cv2.CAP_PROP_POS_MSEC, count * 1000)
         success, frame = vidcap.read()
 
