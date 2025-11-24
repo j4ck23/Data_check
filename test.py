@@ -37,7 +37,7 @@ def img_sim(path, dest):
 
                     score, _ = structural_similarity(ref_grey, img_grey, full=True)
                     Sim_scores.append(score)
-                    
+
                     temp_name_i = i.split("\\")[1]
                     temp_name_i = temp_name_i.split('.')[0]
 
@@ -54,23 +54,19 @@ def img_sim(path, dest):
                         continue
                 if sim == False:
                     Scores.append(i)
-                    name = i.split('\\')[1]
+                    name = i.split("\\")[1]
                     name = name.split('.')[0]
                     filename = os.path.join(dest_folder, f"{name}.jpg")
                     cv2.imwrite(filename, ref_img)
                 else:
                     dropped_image = dropped_image + 1
-
+        
 
     """
     print("Image Similarity Scores:")
     for img, score in Scores:
         print(f"{img}: {score:.4f}")
     """
-
-    with open('data.csv', mode='w', newline='') as file:
-        writer = csv.writer(file)
-        writer.writerows(heat_map_data)
 
     print(f"images in count: {len(Scores)}")
     print(f"Number of images dropped due to similarity: {dropped_image}")

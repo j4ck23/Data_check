@@ -2,6 +2,7 @@ from split_new import split_one_frame_per_second as split
 from img_assess import quality
 from Image_Sim_new import img_sim
 import os
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     split_dest = 'Images'#Set the dest for images from video and quality assessment path
@@ -22,9 +23,10 @@ if __name__ == "__main__":
     
     #Prints some details about the video and frames
     percent = qual[0] / qual[1] * 100
+    percent2 = qual[1] / sim[0]
     print("Details:")
     print(f'Video split into {count} frames')
     print(f"Images dropped due to clarity: {qual[1]-qual[0]}")
     print(f"Qualified images (Acceptable or Sharp and Normal exposure): {qual[0]} ({percent:.2f}%)")
     print(f"Number of images dropped due to similarity: {sim[1]}")
-    print(f"Frames for anaylsis: {sim[0]}")
+    print(f"Frames for anaylsis: {sim[0]} ({percent2:.2f}%)")
