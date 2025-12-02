@@ -1,14 +1,19 @@
 from split_new import split_one_frame_per_second as split
 from img_assess import quality
 from Image_Sim_new import img_sim
+from Empty_Folder import empty_folder
 import os
-import matplotlib.pyplot as plt
+import cv2
+import datetime
 
 if __name__ == "__main__":
     split_dest = 'Images'#Set the dest for images from video and quality assessment path
+    empty_folder(split_dest)
     quality_dest = 'Images_From_Video'#Set dest for quality assessent and similiarty path
+    empty_folder(quality_dest)
     sim_dest = 'Unsimilar_Images'#Set dest for similiarity comparions
-    video = "GX010629.MP4"#Video to get frames from
+    empty_folder(sim_dest)
+    video = 'Still_1_min_3.MP4'#Video to get frames from
     split(video, split_dest) #Splits video into frames
     count = 0
     # Iterate directory
@@ -21,10 +26,18 @@ if __name__ == "__main__":
     sim = img_sim(quality_dest,sim_dest)#Checks the similiarity between each frame and returns unquie frames
     
     
+
+    video = cv2.VideoCapture(video)
+    frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
+    fps = video.get(cv2.CAP_PROP_FPS)
+
+    seconds = round(frames / fps)
+    video_time = datetime.timedelta(seconds=seconds)
     #Prints some details about the video and frames
     percent = qual[0] / qual[1] * 100
     percent2 = qual[1] / sim[0]
-    print("Details:")
+    print("=== Details ===")
+    print(f"Video time (HH:MM:SS): {video_time}")
     print(f'Video split into {count} frames')
     print(f"Images dropped due to clarity: {qual[1]-qual[0]}")
     print(f"Qualified images (Acceptable or Sharp and Normal exposure): {qual[0]} ({percent:.2f}%)")

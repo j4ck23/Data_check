@@ -80,5 +80,3 @@ def img_sim(path, dest):
 
 quality_dest = 'Images_From_Video'#Set dest for quality assessent and similiarty path
 sim_dest = 'Unsimilar_Images'#Set dest for similiarity comparions
-
-img_sim(quality_dest, sim_dest)

@@ -4,7 +4,7 @@ import os
 
 #Change it to your own image folder path!!!
 
-def evaluate_image(path, blur_thresh_low=30.0, blur_thresh_high=100.0, overexpose_thresh=0.05):
+def evaluate_image(path, blur_thresh_low=30.0, blur_thresh_high=100.0, overexpose_thresh=0.25): #Overexpose was 0.05
     image = cv2.imread(path)
     if image is None:
         print(f"Could not load image: {path}")
